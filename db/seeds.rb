@@ -1,7 +1,7 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+# Api User seeds
+ApiUser.create(api_key: ApiUser.generate_api_key, username: 'Api User 1')
+ApiUser.create(api_key: ApiUser.generate_api_key, username: 'Api User 2')
+ApiUser.create(api_key: ApiUser.generate_api_key, username: 'Api User 3')
+
+# Coin seeds
