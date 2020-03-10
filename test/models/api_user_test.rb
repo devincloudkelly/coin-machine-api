@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Api::V1::CoinsControllerTest < ActionDispatch::IntegrationTest
+class ApiUserTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
