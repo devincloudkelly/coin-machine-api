@@ -1,9 +1,5 @@
 class Api::V1::CoinsController < ApplicationController
 
-    def test
-        render json: { message: 'Hello world'}
-    end
-
     def create
         @coin = Coin.new(coin_params)
         if @coin.save
