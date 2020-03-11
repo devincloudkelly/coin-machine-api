@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       patch 'coins/update/:id', to: 'coins#update'
       delete 'coins/delete/:id', to: 'coins#delete'
       get 'coins/all', to: 'coins#index'
+      get 'coins/value', to: 'coins#total_value'
       get 'coins/:id', to: 'coins#show'
     end
   end

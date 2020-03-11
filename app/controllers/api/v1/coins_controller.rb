@@ -45,6 +45,15 @@ class Api::V1::CoinsController < ApplicationController
         end
     end
 
+    def total_value
+        total = Coin.total_coin_value
+        if total
+            render json: {total_value: total}, status: :accepted
+        else
+            render json: { message: 'There was an error with your request. Please try again later'}, status: :not_found
+        end
+    end
+
     private
 
     def coin_params
