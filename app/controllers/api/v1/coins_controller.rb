@@ -5,7 +5,16 @@ class Api::V1::CoinsController < ApplicationController
         if @coin.save
             render json: @coin, status: :created
         else
-            render json: { message: 'Could not create coin, please ensure all parameters are present and try again'}, status: :bad_request
+            render json: { message: 'Could not create coin, please ensure all required attributes are included in your request and try again'}, status: :bad_request
+        end
+    end
+
+    def update
+        coin = Coin.find(params[:id])
+        if coin.update(coin_params)
+            render json: coin, status: :accepted
+        else
+            render json: { message: 'Coin could not be updated. Please update your request and retry'}, status: :bad_request
         end
     end
 

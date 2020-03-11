@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-    # before_action :authorized
+    before_action :authorized
 
     def auth_header
         request.headers['Authorization']
@@ -14,7 +14,6 @@ class ApplicationController < ActionController::API
     def validate_api_key
         if api_key
             valid_key = ApiUser.find_by(api_key: api_key)
-            # valid_key = 'yrw_Ae6VGv4kqvwvozfn9g'
         end
     end
 
