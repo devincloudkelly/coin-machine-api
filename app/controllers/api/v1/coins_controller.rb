@@ -24,10 +24,20 @@ class Api::V1::CoinsController < ApplicationController
         if coin.delete
             render json: { message: 'This coin has been deleted: ', coin: temp }, status: :accepted
         else
-            render json: { message: 'There was an error deleting this coin. Please check your request and try again'}
+            render json: { message: 'There was an error deleting this coin. Please check your request and try again'}, status: :bad_request
         end
     end
 
+    def index
+        coins = Coin.all
+        if coins
+            render json: coins, status: :accepted
+        else
+            render json: { message: 'There was an error retrieving all coins. Please try again later'}, status: :bad_request
+        end
+    end
+
+    
 
     private
 
