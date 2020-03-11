@@ -37,7 +37,13 @@ class Api::V1::CoinsController < ApplicationController
         end
     end
 
-    
+    def show
+        if coin = Coin.find(params[:id])
+            render json: coin, status: :accepted
+        else
+            render json: { message: 'Coin not found. Please update your paramaters and try again'}, status: :bad_request
+        end
+    end
 
     private
 
