@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
       get '/transactions/', to: 'transactions#index'
       post '/transactions/new', to: 'transactions#create'
+      get '/transactions/user/:id', to: 'transactions#user_transactions'
 
     end
   end

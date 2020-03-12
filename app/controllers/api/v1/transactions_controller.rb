@@ -21,6 +21,17 @@ class Api::V1::TransactionsController < ApplicationController
         end
     end
 
+    def user_transactions
+        transactions = Transaction.where("api_user_id = ?", params[:id])
+        if transactions && transactions.length > 0 
+            render json: transactions, status: :accepted
+        elsif transactions && transactions.length <= 0
+            render json: { message: 'There are no transactions for this user or user does not exist' }, status: :not_found
+        else
+            render json: { message: 'There was an error processing your request, please try again later.' }, status: :bad_request
+        end
+    end
+
 
     private
 
