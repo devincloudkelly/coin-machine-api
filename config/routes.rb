@@ -9,7 +9,8 @@ Rails.application.routes.draw do
       get '/coins/:id', to: 'coins#show'
 
       get '/transactions/', to: 'transactions#index'
-      post '/transactions/new', to: 'transactions#create'
+      post '/transactions/deposit', to: 'transactions#deposit'
+      post '/transactions/withdrawal', to: 'transactions#withdrawal'
       get '/transactions/user/:id', to: 'transactions#user_transactions'
 
     end

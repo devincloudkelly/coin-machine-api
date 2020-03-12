@@ -7,9 +7,24 @@ class Api::V1::TransactionsController < ApplicationController
             render json: { message: 'There was an error processing this request. Please try again later.'}, status: :bad_request
         end
     end
-
-    def create
+    
+    def deposit
         transaction = Transaction.new(transaction_params)
+        transaction.transaction_type = 'deposit'
+        api_user = validate_api_key
+        transaction.api_user_id = api_user.id
+        if transaction.save
+            render json: transaction, status: :created
+        elsif !transaction.valid?
+            render json: { message: transaction.errors }
+        else
+            render json: { message: 'There was an error processing your request, please try again later.' }, status: :bad_request
+        end
+    end
+    
+    def withdrawal
+        transaction = Transaction.new(transaction_params)
+        transaction.transaction_type = 'withdrawal'
         api_user = validate_api_key
         transaction.api_user_id = api_user.id
         if transaction.save
