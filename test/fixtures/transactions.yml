@@ -2,10 +2,10 @@
 
 one:
   transaction_type: MyString
-  resource: 
-  resource: 
+  coin: one
+  api_user: one
 
 two:
   transaction_type: MyString
-  resource: 
-  resource: 
+  coin: two
+  api_user: two
