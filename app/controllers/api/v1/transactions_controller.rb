@@ -10,6 +10,8 @@ class Api::V1::TransactionsController < ApplicationController
 
     def create
         transaction = Transaction.new(transaction_params)
+        api_user = validate_api_key
+        transaction.api_user_id = api_user.id
         if transaction.save
             render json: transaction, status: :created
         elsif !transaction.valid?
@@ -18,6 +20,7 @@ class Api::V1::TransactionsController < ApplicationController
             render json: { message: 'There was an error processing your request, please try again later.' }, status: :bad_request
         end
     end
+
 
     private
 
