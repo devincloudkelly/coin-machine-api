@@ -10,10 +10,10 @@
   <body>
     <h1>A recent transaction has resulted in depleted quantities of <%= @coin.name %>s.</h1>>
     <p>
-        <%= @coin.name %>s current quantity is: <%= @coin.quantity %>
+        Low-quantity alert: <%= @coin.name %>s current quantity is: <%= @coin.quantity %>
     </p>
     <p>
-        The current value of all coins in the system is $<%= @total_value %>
+        The current value of ALL coins in the system is $<%= @total_value %>
     </p>
   </body>
 </html>
