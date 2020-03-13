@@ -33,10 +33,10 @@ class Api::V1::TransactionsController < ApplicationController
         if coin.quantity > 0
             if transaction.save
                 coin.withdraw_coin
-                render json: transaction, status: :created
                 if coin.quantity < 4
                     AdminMailer.with(coin: coin).low_coin_email.deliver_now
                 end
+                render json: transaction, status: :created
             elsif !transaction.valid?
                 render json: { message: transaction.errors }
             else

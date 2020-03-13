@@ -1,4 +1,4 @@
-sclass AdminMailer < ApplicationMailer
+class AdminMailer < ApplicationMailer
     default to: -> { Admin.pluck(:email) },
             from: 'notifications@coin-machine-api.com'
 
