@@ -5,7 +5,7 @@ class Coin < ApplicationRecord
 
     def self.total_coin_value
         coins = Coin.all
-        coins.reduce(0){|sum, coin| sum + (coin.value.to_f * coin.quantity.to_i)}
+        coins.reduce(0){|sum, coin| sum + (coin.value.to_f * coin.quantity.to_i)}.round(2)
     end
 
     def deposit_coin
