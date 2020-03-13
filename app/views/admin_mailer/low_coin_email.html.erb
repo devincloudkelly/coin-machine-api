@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>A recent transaction has resulted in depleted quantities of <%= @coin.name %>s.</h1>>
+    <p>
+        <%= @coin.name %>s current quantity is: <%= @coin.quantity %>
+    </p>
+    <p>
+        The current value of all coins in the system is $<%= @total_value %>
+    </p>
+  </body>
+</html>
