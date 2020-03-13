@@ -13,7 +13,9 @@ class Api::V1::TransactionsController < ApplicationController
         transaction.transaction_type = 'deposit'
         api_user = validate_api_key
         transaction.api_user_id = api_user.id
+        coin = Coin.find(transaction.coin_id)
         if transaction.save
+            coin.deposit_coin
             render json: transaction, status: :created
         elsif !transaction.valid?
             render json: { message: transaction.errors }
@@ -27,7 +29,9 @@ class Api::V1::TransactionsController < ApplicationController
         transaction.transaction_type = 'withdrawal'
         api_user = validate_api_key
         transaction.api_user_id = api_user.id
+        coin = Coin.find(transaction.coin_id)
         if transaction.save
+            coin.withdraw_coin
             render json: transaction, status: :created
         elsif !transaction.valid?
             render json: { message: transaction.errors }
