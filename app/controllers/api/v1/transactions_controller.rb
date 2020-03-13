@@ -30,13 +30,17 @@ class Api::V1::TransactionsController < ApplicationController
         api_user = validate_api_key
         transaction.api_user_id = api_user.id
         coin = Coin.find(transaction.coin_id)
-        if transaction.save
-            coin.withdraw_coin
-            render json: transaction, status: :created
-        elsif !transaction.valid?
-            render json: { message: transaction.errors }
+        if coin.quantity > 0
+            if transaction.save
+                coin.withdraw_coin
+                render json: transaction, status: :created
+            elsif !transaction.valid?
+                render json: { message: transaction.errors }
+            else
+                render json: { message: 'There was an error processing your request, please try again later.' }, status: :bad_request
+            end
         else
-            render json: { message: 'There was an error processing your request, please try again later.' }, status: :bad_request
+            render json: { message: "Cannot process this request due to insufficient funds. Please deposit more -- #{coin.name}s -- or withdraw a different coin"}, status: :not_acceptable
         end
     end
 
