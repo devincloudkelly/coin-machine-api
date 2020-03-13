@@ -1,6 +1,6 @@
 class AdminMailer < ApplicationMailer
     default to: -> { Admin.pluck(:email) },
-            from: 'notifications@coin-machine-api.com'
+            from: 'notifications@example.com'
 
     def low_coin_email
         @coin = params[:coin]
