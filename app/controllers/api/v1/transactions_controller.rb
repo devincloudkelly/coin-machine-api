@@ -10,12 +10,16 @@ class Api::V1::TransactionsController < ApplicationController
     
     def deposit
         transaction = Transaction.new(transaction_params)
+        coin = Coin.find(transaction.coin_id)
         transaction.transaction_type = 'deposit'
         api_user = validate_api_key
         transaction.api_user_id = api_user.id
-        coin = Coin.find(transaction.coin_id)
         if transaction.save
             coin.deposit_coin
+            transaction.coin.quantity += 1
+            if coin.quantity < 4
+                AdminMailer.with(coin: coin).low_coin_email.deliver_now
+            end
             render json: transaction, status: :created
         elsif !transaction.valid?
             render json: { message: transaction.errors }
@@ -33,6 +37,7 @@ class Api::V1::TransactionsController < ApplicationController
         if coin.quantity > 0
             if transaction.save
                 coin.withdraw_coin
+                transaction.coin.quantity -= 1
                 if coin.quantity < 4
                     AdminMailer.with(coin: coin).low_coin_email.deliver_now
                 end

@@ -15,9 +15,9 @@ I created a RESTful Rails Api that allows authorized users to interact with coin
 
 ## ENDPOINTS
 
-All Endpoints can be reached via the base url below:
+All Endpoints can be reached via the base url + appending the paths for coins and transactions listed below:
 
-http://secure-eyrie-25379.herokuapp.com/api/v1
+base url: http://secure-eyrie-25379.herokuapp.com/api/v1
 
  #### Coins
  
