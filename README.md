@@ -1,24 +1,44 @@
-# README
+# MORTGAGEHIPPO CODE CHALLENGE
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+First off, thank you for this opportunity. Like MortgageHippo, I love working with Rails, and I'm hungry to keep growing. This was an enjoyable challenge and I'd love to do more with MortgageHippo.
 
-Things you may want to cover:
+## OVERVIEW
 
-* Ruby version
+I created a RESTful Rails Api that allows authorized users to interact with coins and transactions. To verify users are authorized, an Api-key is passed in via the 'Authorization' header of the request and is verified via a before_action on the backend.
 
-* System dependencies
 
-* Configuration
+## MAKING A REQUEST
 
-* Database creation
+ * All requests need to include the 'Authorization' header with your valid Api-key, ex. "Api-Key 1234-example-7890".
+ * If an endpoint has an /:id, replace that with the id of the coin or user
+ * 
 
-* Database initialization
+## ENDPOINTS
 
-* How to run the test suite
+All Endpoints can be reached via the base url below:
 
-* Services (job queues, cache servers, search engines, etc.)
+http://secure-eyrie-25379.herokuapp.com/api/v1
 
-* Deployment instructions
+ #### Coins
+ 
+ * /coins   View all coins
+ * /coins/new   Create a new coin
+ * /coins/update/:id    Update an existing coin via a PATCH request
+ * /coins/delete/:id    Delete a coin
+ * /coins/value     Get the total value of all the coins in the system
+ * /coins/:id      View an individual coin
 
-* ...
+ #### Transactions
+
+ * /transactions    View all transactions
+ * /transactions/deposit    Deposit one coin
+ * /transactions/withdrawal     Withdraw one coin. If quantity of the coin withdrawn goes below 4, it triggers an email to be sent to all admins.
+ * /transactions/user/:id   View all transactions for a specific user
+
+
+
+## CONTACT
+
+If you have any questions or need any clarification on this challenge, you can contact me at devin.cloud.kelly@gmail.com
+
+
